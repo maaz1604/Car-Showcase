@@ -1,11 +1,20 @@
 import { CarCard, Hero } from "@/components";
 import CustomFilter from "@/components/CustomFilter";
 import SearchBar from "@/components/SearchBar";
+import { HomeProps } from "@/types";
 import { fetchCars } from "@/utils";
+import { SearchParams } from "next/dist/server/request/search-params";
 import Image from "next/image";
 
-export default async function Home() {
-  const allCars = await fetchCars();
+export default async function Home({ searchParams }: HomeProps) {
+  const params = await searchParams;
+  const allCars = await fetchCars({
+    manufacturer: params.manufacturer || '',
+    year: params.year || 2022, // Convert string to number
+    fuel: params.fuel || '',
+    limit: params.limit || 10, // Convert string to number
+    model: params.model || '',
+  });
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
   return (
