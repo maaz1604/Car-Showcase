@@ -30,31 +30,31 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
             <ComboboxOptions>
               {
                 filteredManufacturers.map((item) => (
-                    <ComboboxOption 
+                  <ComboboxOption
                     value={item}
                     key={item}
-                    className={({active}) => `
+                    className={({ active }) => `
                       relative  search-manufacturer__option
-                      ${active ? 'bg-primary-blue text-white' 
+                      ${active ? 'bg-primary-blue text-white'
                         : 'text-gray-900'
                       }                  
                     `}
-                    >
-                      {({selected,active}) => (
-                        <>
+                  >
+                    {({ selected, active }) => (
+                      <>
                         <span
-                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                          className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
                           {item}
                         </span>
                         {selected ? (
                           <span
-                          className={`absolue inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'}`}
+                            className={`absolue inset-y-0 left-0 flex items-center pl-3 ${active ? 'text-white' : 'text-teal-600'}`}
                           >
                           </span>
-                        ):null}
-                        </>
-                      )}
-                    </ComboboxOption>
+                        ) : null}
+                      </>
+                    )}
+                  </ComboboxOption>
                 ))}
             </ComboboxOptions>
           </Transition>
